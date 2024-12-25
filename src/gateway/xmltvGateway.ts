@@ -43,10 +43,9 @@ export interface Programme {
 function mapProgramme(programme: ProgrammeXml): Programme {
   console.log('programme', programme)
   const dateFormat = 'YYYYMMDDHHmmss ZZ' // 20241208005000 +0100
-  // DEBUG
-  const debug = dayjs('20241224011500 +0100', dateFormat, true).toISOString()
-  const startDateTime = dayjs(programme['@_start'], dateFormat, true).toISOString()
-  const stopDateTime = dayjs(programme['@_stop'], dateFormat, true).toISOString()
+  // TODO: use strict mode when this is fixed: https://github.com/iamkun/dayjs/issues/2797
+  const startDateTime = dayjs(programme['@_start'], dateFormat).toISOString()
+  const stopDateTime = dayjs(programme['@_stop'], dateFormat).toISOString()
 
   return {
     title: programme.title['#text'],
