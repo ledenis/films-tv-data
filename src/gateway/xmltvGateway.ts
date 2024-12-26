@@ -22,6 +22,9 @@ interface ProgrammeXml {
   title: {
     '#text': string
   }
+  credits?: {
+    director: string[]
+  }
   category: { '#text': string }[]
   icon: {
     '@_src': string
@@ -33,6 +36,7 @@ interface ProgrammeXml {
 
 export interface Programme {
   title: string
+  directors: string[]
   categories: string[]
   iconUrl: string
   startDateTime: string
@@ -49,6 +53,7 @@ function mapProgramme(programme: ProgrammeXml): Programme {
 
   return {
     title: programme.title['#text'],
+    directors: programme.credits?.director ?? [],
     categories: programme.category.map((cat) => cat['#text']),
     iconUrl: programme.icon['@_src'],
     startDateTime,
@@ -87,7 +92,7 @@ function getUniqueCategories(programmes: Programme[]) {
 const CACHE_PATH = './cache'
 const XMLTV_CACHE_FILENAME = 'xmltv_tnt.xml.gz'
 
-const alwaysArray = ['tv.programme.category']
+const alwaysArray = ['tv.programme.category', 'tv.programme.credits.director']
 
 async function readGzipStream(gzipStream: Readable): Promise<string> {
   const unzippedStream = gzipStream.pipe(createGunzip())
