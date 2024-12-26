@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx --env-file=.env.local src/index.ts",
-    "start:prod": "tsx src/index.ts"
+    "start": "TZ=UTC tsx --env-file=.env.local src/index.ts",
+    "start:prod": "TZ=UTC tsx src/index.ts"
   },
   "author": "ledenis",
   "license": "MIT",

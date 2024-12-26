@@ -40,6 +40,4 @@ async function main() {
   fsPromises.writeFile(resultFilePath, resultJson)
 }
 
-main()
-  .then(() => console.log('done'))
-  .catch((err) => console.log('Failed', err))
+main().then(() => console.log('done'))
