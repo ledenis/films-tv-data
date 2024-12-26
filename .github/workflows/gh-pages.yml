@@ -3,8 +3,10 @@ name: GH Pages
 on:
   push:
     branches: 
-    - $default-branch
+    - master
     - add-workflow
+  schedule:
+  - cron: "*/5 * * * *"
   # Allows manual run
   workflow_dispatch:
 
