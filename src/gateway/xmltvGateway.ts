@@ -26,7 +26,7 @@ interface ProgrammeXml {
     director: string[]
   }
   category: { '#text': string }[]
-  icon: {
+  icon?: {
     '@_src': string
   }
   '@_start': string
@@ -38,7 +38,7 @@ export interface Programme {
   title: string
   directors: string[]
   categories: string[]
-  iconUrl: string
+  iconUrl?: string
   startDateTime: string
   stopDateTime: string
   channelId: string
@@ -55,7 +55,7 @@ function mapProgramme(programme: ProgrammeXml): Programme {
     title: programme.title['#text'],
     directors: programme.credits?.director ?? [],
     categories: programme.category.map((cat) => cat['#text']),
-    iconUrl: programme.icon['@_src'],
+    iconUrl: programme.icon?.['@_src'],
     startDateTime,
     stopDateTime,
     channelId: programme['@_channel'],
