@@ -45,7 +45,14 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v5
 
-    - name: Upload artifact
+    - name: Upload debug artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: debug
+        path: cache
+
+    - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: 'out'
