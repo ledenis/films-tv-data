@@ -25,7 +25,7 @@ interface ProgrammeXml {
   credits?: {
     director: string[]
   }
-  category: { '#text': string }[]
+  category?: { '#text': string }[]
   icon?: {
     '@_src': string
   }
@@ -54,7 +54,7 @@ function mapProgramme(programme: ProgrammeXml): Programme {
   return {
     title: programme.title['#text'],
     directors: programme.credits?.director ?? [],
-    categories: programme.category.map((cat) => cat['#text']),
+    categories: (programme.category ?? []).map((cat) => cat['#text']),
     iconUrl: programme.icon?.['@_src'],
     startDateTime,
     stopDateTime,
