@@ -79,13 +79,17 @@ function isMovie(programme: Programme) {
     'Action',
     'Drame',
   ]
-  return filmCategories.some((filmCategory) => programme.categories[0].startsWith(filmCategory))
+  return filmCategories.some(
+    (filmCategory) => programme.categories.length && programme.categories[0].startsWith(filmCategory),
+  )
 }
 
 function getUniqueCategories(programmes: Programme[]) {
   const categoriesSet = new Set()
   programmes.forEach((programme) => {
-    categoriesSet.add(programme.categories[0])
+    if (programme.categories.length) {
+      categoriesSet.add(programme.categories[0])
+    }
   })
 }
 
